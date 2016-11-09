@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Narles/Scenes/byran.unity
+- path: Assets/Narles/Scenes/steve.unity
   isLoaded: 1
   isActive: 1
