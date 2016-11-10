@@ -4,20 +4,26 @@ using System;
 
 public class StateIntro : GameState
 {
-
+    private float timer;
     public StateIntro(GameManager manager) : base(manager) { }
 
     public override void OnStateEntered()
     {
-        throw new NotImplementedException();
+        timer = 4.0f;
     }
     public override void OnStateExit()
     {
-        throw new NotImplementedException();
+        timer = 4.0f;
     }
 
     public override void StateUpdate()
     {
-        throw new NotImplementedException();
+        timer -= Time.deltaTime;
+        Debug.Log(timer); //Test print to console remove later 
+
+        if (timer <= 0.0f)
+        {
+            gameManager.NewGameState(gameManager.stateGamePlaying);
+        }
     }
 }

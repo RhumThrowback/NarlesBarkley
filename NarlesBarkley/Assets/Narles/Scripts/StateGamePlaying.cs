@@ -4,17 +4,20 @@ using System;
 
 public class StateGamePlaying : GameState
 {
+    private ScrollBehaviour scrollScript;
+    private Camera cam = Camera.main;
     private bool isPaused = false;
 
     public StateGamePlaying(GameManager manager) : base(manager) { }
 
     public override void OnStateEntered()
     {
-        throw new NotImplementedException();
+        scrollScript = cam.GetComponent<ScrollBehaviour>();
+        scrollScript.SetScrollSpeed(1.0f);
     }
     public override void OnStateExit()
     {
-        throw new NotImplementedException();
+        scrollScript.SetScrollSpeed(0.0f);
     }
     public override void StateUpdate()
     {

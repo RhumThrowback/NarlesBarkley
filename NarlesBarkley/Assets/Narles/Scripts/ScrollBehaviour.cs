@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScrollBehaviour : MonoBehaviour
 {
-    private float scrollSpeed = 1.0f;
+    private float scrollSpeed = 0.0f;
     public Rigidbody2D rb;
 
     // Use this for initialization
@@ -15,6 +15,11 @@ public class ScrollBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(0.0f, scrollSpeed, 0.0f);
+            rb.velocity = new Vector3(0.0f, scrollSpeed, 0.0f);      
+    }
+
+    public void SetScrollSpeed(float speed)
+    {
+        scrollSpeed = speed;
     }
 }

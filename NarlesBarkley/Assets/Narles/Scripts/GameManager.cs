@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         NewGameState(stateIntro);
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 
     private void Update()

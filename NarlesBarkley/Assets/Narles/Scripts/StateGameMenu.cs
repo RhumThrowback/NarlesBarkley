@@ -4,11 +4,15 @@ using System;
 
 public class StateGameMenu : GameState
 {
+    private ScrollBehaviour scroll;
+    private Camera cam = Camera.main;
+
     public StateGameMenu(GameManager manager) : base(manager) { }
 
     public override void OnStateEntered()
     {
-        throw new NotImplementedException();
+        scroll = cam.GetComponent<ScrollBehaviour>();
+        scroll.SetScrollSpeed(0.0f);
     }
     public override void OnStateExit()
     {
