@@ -3,11 +3,13 @@ using System.Collections;
 
 public class checkTongueHit : MonoBehaviour {
 
-    private extendTongue script;
+    public extendTongue script;
+    float platformY;
+
     // Use this for initialization
-	void Start ()
+    void Start ()
     {
-        script = GameObject.FindObjectOfType(typeof(extendTongue)) as extendTongue;
+       
 	}
 	
 	// Update is called once per frame
@@ -17,10 +19,12 @@ public class checkTongueHit : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Platform")
-        {           
+        if (coll.gameObject.tag == "Next Platform")
+        {
+            
+            platformY = coll.gameObject.transform.position.y;
             Debug.Log("Hit");
-            script.MoveUp();            
+            script.MoveUp(platformY);            
         }
         
     }

@@ -4,46 +4,41 @@ using System.Collections;
 public class extendTongue : MonoBehaviour {
         
     public Rigidbody2D rb;
-    public GameObject playerTongue;
-    private bool hitPlatform;
+    public GameObject playerTongue;    
 
     // Use this for initialization
     void Start () {        
-        rb = GetComponent<Rigidbody2D>();
-        hitPlatform = false;
+        rb = GetComponent<Rigidbody2D>();       
     }
 
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            Debug.Log("Extend the tongue");
-            StartCoroutine(activateTongue());            
-        }        
+        
     }
         
     void Update ()
     {
-        if (hitPlatform)
-        {
-            Debug.Log("Move the player");
-        }
-
+       
     }
 
-    void MoveToNextPlatform()
+    void MoveToNextPlatform(float platformY)
     {
-        transform.Translate(0, 2.0f, 0);
+        transform.Translate(0, platformY, 0);
     }
     
-    IEnumerator activateTongue() {
+    public IEnumerator activateTongue() {
         playerTongue.SetActive(true);   
         yield return new WaitForSeconds(0.5f);       
         playerTongue.SetActive(false);
     }
 
-    public void MoveUp()
+    public void actTongue()
     {
-        MoveToNextPlatform();
+        StartCoroutine(activateTongue());
+    }
+
+    public void MoveUp(float platformPositionY)
+    {
+        MoveToNextPlatform(platformPositionY);
     }
 }
