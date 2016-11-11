@@ -9,7 +9,7 @@ public class SpawnPlatform : MonoBehaviour
     public GameObject enemy;
     }
     
-    private const float RING_HEIGHT = 12.0f; //Distance between platforms (height)
+    private const float RING_HEIGHT = 4.0f; //Distance between platforms (height)
     private const float CHANCE_OF_THEME_CHANGE = 0.2f;
     private Vector3 spawnPoint;
     public GameObject lastBaseObject;
@@ -28,7 +28,7 @@ public class SpawnPlatform : MonoBehaviour
 	void Update ()
     {
 	    //if the last base object we spawned has moved far enough away, spawn a new base object
-           if(lastBaseObject.transform.position.y - spawnPoint.y > RING_HEIGHT)
+           if(spawnPoint.y - lastBaseObject.transform.position.y > RING_HEIGHT)
             {
                 CreateNewSegment();
             }

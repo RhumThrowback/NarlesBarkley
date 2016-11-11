@@ -56,4 +56,9 @@ public class GameManager : MonoBehaviour
         currentState = newState;
         currentState.OnStateEntered();
     }
+
+    public GameState CurrentState()
+    {
+        return currentState;
+    }
 }
