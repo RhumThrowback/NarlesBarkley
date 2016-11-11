@@ -12,7 +12,7 @@ public class TouchControl : MonoBehaviour {
     
     void Start()
     {
-        RingPlatform = GameObject.FindGameObjectWithTag ("Ring");        
+        RingPlatform = GameObject.FindGameObjectWithTag ("Ring");               
     }
            
     /*void FixedUpdate()
@@ -79,12 +79,12 @@ public class TouchControl : MonoBehaviour {
         if (drag > 5)
         {
             Debug.Log("Swipe Right!");
-            spinScript.CallRotate(50);                       
+            spinScript.CallRotate(5);                       
         }
         if (drag < -5)
         {
             Debug.Log("Swipe Left!");
-            spinScript.CallRotate(-50);
+            spinScript.CallRotate(-5);
         }
     }
 }

@@ -11,7 +11,7 @@ public class SpinPlatform : MonoBehaviour {
 
     void Start()
     {
-        rb = ActiveRing.GetComponent<Rigidbody>();
+       rb = ActiveRing.GetComponent<Rigidbody>();
     }
 
 	void Update()
