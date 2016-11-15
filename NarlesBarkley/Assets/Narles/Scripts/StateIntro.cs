@@ -5,11 +5,15 @@ using System;
 public class StateIntro : GameState
 {
     private float timer;
+    private SpawnPlatform spawnScript;
     public StateIntro(GameManager manager) : base(manager) { }
 
     public override void OnStateEntered()
     {
+        spawnScript = GameManager.Instance.GetComponent<SpawnPlatform>();
         timer = 4.0f;
+        spawnScript.CreateNewLevel();
+        
     }
     public override void OnStateExit()
     {
@@ -19,8 +23,7 @@ public class StateIntro : GameState
     public override void StateUpdate()
     {
         timer -= Time.deltaTime;
-        Debug.Log(timer); //Test print to console remove later 
-
+    
         if (timer <= 0.0f)
         {
             gameManager.NewGameState(gameManager.stateGamePlaying);

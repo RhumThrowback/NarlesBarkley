@@ -7,16 +7,17 @@ public class SpinPlatform : MonoBehaviour {
 	
 	public Rigidbody rb;
     public GameObject ActiveRing;
-    private float torque = 1.5f;
+    private float torque = 1.0f;
 
     void Start()
     {
-        rb = ActiveRing.GetComponent<Rigidbody>();
+        //rb = ActiveRing.GetComponent<Rigidbody>();
     }
 
 	void Update()
     {
-        
+        ActiveRing = GameManager.Instance.FindActiveRing();
+        rb = GameManager.Instance.activeRing.GetComponent<Rigidbody>();
     }
 
     public void CallRotate(float rotate)

@@ -14,7 +14,7 @@ public class PoolManager : MonoBehaviour
         public GameObject prefab;
         // quantity of the object to pre-instantiate
         [SerializeField]
-        public int count = 3;
+        public int count = 1;       
     }
 
     //The object prefabs which the pool can handle
@@ -27,6 +27,7 @@ public class PoolManager : MonoBehaviour
 
     public static PoolManager Instance { get { return instance; } }
     private static PoolManager instance = null;
+
 
     void Awake()
     {
@@ -63,6 +64,11 @@ public class PoolManager : MonoBehaviour
             {
                 GameObject newObj = Instantiate(objectPrefab.prefab) as GameObject;
                 newObj.name = objectPrefab.prefab.name;
+                newObj.tag = "Ring";
+                foreach (Transform t in newObj.transform)
+                {
+                    t.tag = "Ring";
+                }
                 PoolObject(newObj);
             }
         }
@@ -83,6 +89,7 @@ public class PoolManager : MonoBehaviour
                     pool[i].RemoveAt(0);
                     pooledObject.transform.parent = null;
                     pooledObject.SetActive(true);
+                    pooledObject.name = pooledObject.name;
                     return pooledObject;
                 }
                 if(!onlyPooled)
@@ -113,3 +120,4 @@ public class PoolManager : MonoBehaviour
         }
     }
 }
+                    

@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CleanUp : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter");
-        if (other.gameObject.name == "Platform")
+        if (other.gameObject.tag == "Ring")
         {
             PoolManager.Instance.PoolObject(other.gameObject);
+            GameManager.Instance.ringsInLevel.RemoveAt(0);
         }
     }
-
 }

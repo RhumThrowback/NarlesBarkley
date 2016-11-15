@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +15,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
     private static GameManager instance = null;
 
-
+    public int ringCount;
+    private const int MIN_RINGS = 8;
+    public List<GameObject> ringsInLevel;
+    public GameObject activeRing;
+    public GameObject player;
     private void Awake()
     {
         if(instance != null && instance != this)
@@ -37,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         NewGameState(stateIntro);
         //SceneManager.LoadScene(0);
+        activeRing = null;
     }
 
     private void Update()
@@ -60,5 +67,24 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState()
     {
         return currentState;
+    }
+
+    public GameObject FindActiveRing()
+    {
+        float minDist = Mathf.Infinity;
+        Vector3 currentPostion = player.transform.position;
+        foreach(GameObject ring in ringsInLevel)
+        {
+            Vector3 directionToTarget = ring.transform.position - currentPostion;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+
+            if(dSqrToTarget < minDist && ring.transform.position.y > currentPostion.y)
+            {
+                minDist = dSqrToTarget;
+                activeRing = ring;
+            }
+        }
+
+        return activeRing;
     }
 }
