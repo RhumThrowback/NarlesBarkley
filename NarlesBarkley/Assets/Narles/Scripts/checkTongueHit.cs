@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class checkTongueHit : MonoBehaviour {
+public class checkTongueHit : MonoBehaviour
+{
 
     public extendTongue script;
     float platformY;
@@ -13,19 +14,22 @@ public class checkTongueHit : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Next Platform")
-        {
-            
-            platformY = coll.gameObject.transform.position.y;
-            Debug.Log("Hit");
-            script.MoveUp(platformY);            
+        if(!script.isMoving)
+        { 
+            if (coll.gameObject.tag == "Ring" && coll.gameObject.activeInHierarchy)
+            {
+                platformY = coll.gameObject.transform.position.y;
+                Debug.Log("Hit");
+                script.MoveUp(platformY);
+                script.isMoving = true;  
+            }
         }
-        
     }
 }

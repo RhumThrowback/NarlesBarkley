@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScrollBehaviour : MonoBehaviour
 {
-    private float scrollSpeed = 1.0f;
+    private float scrollSpeed;
     private Rigidbody rb;
     private Camera mainCam;
 
@@ -12,12 +12,15 @@ public class ScrollBehaviour : MonoBehaviour
     {
         mainCam = Camera.main;
 	    rb = GetComponent<Rigidbody>();
+        scrollSpeed = GameManager.Instance.scrollSpeed;
 	}
 
     // Update is called once per frame
     void Update()
     {
         if (rb == null) return;
+
+        scrollSpeed = GameManager.Instance.scrollSpeed;
 
         GameState gameState = GameManager.Instance.CurrentState();
         if (gameState == GameManager.Instance.stateGamePlaying)

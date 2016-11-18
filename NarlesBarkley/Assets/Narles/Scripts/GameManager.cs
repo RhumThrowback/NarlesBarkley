@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
 
     public int ringCount;
     private const int MIN_RINGS = 8;
+
+    public float scrollSpeed;
     public List<GameObject> ringsInLevel;
+
     public GameObject activeRing;
     public GameObject player;
     private void Awake()
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
         NewGameState(stateIntro);
         //SceneManager.LoadScene(0);
         activeRing = null;
+        scrollSpeed = 1.0f;
     }
 
     private void Update()
@@ -86,5 +90,11 @@ public class GameManager : MonoBehaviour
         }
 
         return activeRing;
+    }
+    public Vector3 PlayerPosition(GameObject player)
+    {
+        Vector3 playerScreenPos = Camera.main.GetComponent<Camera>().WorldToScreenPoint(player.transform.position);
+        Debug.Log(playerScreenPos);
+        return playerScreenPos;
     }
 }

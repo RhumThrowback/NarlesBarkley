@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpinPlatform : MonoBehaviour {
-
-	
-	
-	public Rigidbody rb;
-    public GameObject ActiveRing;
+public class SpinPlatform : MonoBehaviour
+{
+	private Rigidbody rb;
+    private GameObject activeRing;
     private float torque = 1.0f;
 
     void Start()
@@ -16,7 +14,8 @@ public class SpinPlatform : MonoBehaviour {
 
 	void Update()
     {
-        ActiveRing = GameManager.Instance.FindActiveRing();
+        activeRing = GameManager.Instance.FindActiveRing();
+        if (activeRing == null) return;
         rb = GameManager.Instance.activeRing.GetComponent<Rigidbody>();
     }
 
@@ -33,7 +32,7 @@ public class SpinPlatform : MonoBehaviour {
                 Debug.Log("Rotate Right");
                 rb.AddTorque(-transform.up * torque * rotate);
             }
-            if (rotate < 0 )
+                if (rotate < 0 )
             {
                 Debug.Log("Rotate Left");
                 rb.AddTorque(-(transform.up * torque * rotate));					    

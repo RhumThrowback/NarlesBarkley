@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class extendTongue : MonoBehaviour {
+public class extendTongue : MonoBehaviour
+{
         
-    public Rigidbody2D rb;
-    public GameObject playerTongue;    
+    public Rigidbody rb;
+    public GameObject playerTongue;
+    public bool isMoving = false;
 
     // Use this for initialization
-    void Start () {        
-        rb = GetComponent<Rigidbody2D>();       
+    void Start ()
+    {        
+        rb = GetComponent<Rigidbody>();
+        playerTongue.SetActive(false);  
     }
 
     void FixedUpdate()
@@ -23,13 +27,16 @@ public class extendTongue : MonoBehaviour {
 
     void MoveToNextPlatform(float platformY)
     {
-        transform.Translate(0, platformY, 0);
+       gameObject.transform.position = new Vector3(0.0f, platformY, 0.0f);
+        isMoving = false;
     }
     
-    public IEnumerator activateTongue() {
-        playerTongue.SetActive(true);   
-        yield return new WaitForSeconds(0.5f);       
+    public IEnumerator activateTongue()
+    {
+        playerTongue.SetActive(true);
+        yield return new WaitForSeconds(0.2f);       
         playerTongue.SetActive(false);
+        //isMoving = false;
     }
 
     public void actTongue()
@@ -39,6 +46,24 @@ public class extendTongue : MonoBehaviour {
 
     public void MoveUp(float platformPositionY)
     {
+        //playerTongue.SetActive(false);
         MoveToNextPlatform(platformPositionY);
+       
     }
+
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("HitExtendTongue");
+    //    GameObject temp;
+    //    float newY;
+
+    //    if (collision.gameObject.name == "Ring")
+    //    {
+    //        temp = collision.gameObject;
+    //        newY = temp.gameObject.transform.position.y;
+
+    //        MoveUp(newY);
+
+    //    }
+    //}
 }

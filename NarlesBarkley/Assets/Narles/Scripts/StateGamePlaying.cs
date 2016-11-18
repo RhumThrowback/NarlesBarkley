@@ -30,6 +30,17 @@ public class StateGamePlaying : GameState
                 PauseGameMode();
             }
         }
+
+        GameManager.Instance.PlayerPosition(GameManager.Instance.player);
+
+        if(GameManager.Instance.PlayerPosition(GameManager.Instance.player).y > (Camera.main.pixelHeight * 0.5f))
+        {
+            GameManager.Instance.scrollSpeed = 2.0f;
+        }
+        else
+        {
+            GameManager.Instance.scrollSpeed = 1.0f;
+        }
     }
 
     private void ResumeGameMode()

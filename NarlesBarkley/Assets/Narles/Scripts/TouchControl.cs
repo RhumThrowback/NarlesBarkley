@@ -6,13 +6,13 @@ public class TouchControl : MonoBehaviour {
     private float distance = 0;
     private bool hasSwiped = false;
 
-    private GameObject RingPlatform;      
     public extendTongue tongueScript;
     public SpinPlatform spinScript;
+    public Player playerScript;
     
     void Start()
     {
-        RingPlatform = GameObject.FindGameObjectWithTag ("Ring");        
+              
     }
            
     /*void FixedUpdate()
@@ -67,24 +67,28 @@ public class TouchControl : MonoBehaviour {
         float drag = Input.GetAxis("Horizontal");
         float swipe = Input.GetAxis("Vertical");
        
-        if (swipe < -5) 
-        {
-           Debug.Log("Swipe Up!");
-           tongueScript.actTongue();
-        }
-        if (swipe > 5) 
-        {
-           Debug.Log("Swipe Down!");
-        }
-        if (drag > 5)
-        {
-            Debug.Log("Swipe Right!");
-            spinScript.CallRotate(50);                       
-        }
-        if (drag < -5)
-        {
-            Debug.Log("Swipe Left!");
-            spinScript.CallRotate(-50);
+        if(GameManager.Instance.CurrentState() == GameManager.Instance.stateGamePlaying)
+        { 
+            if (swipe < -5) 
+            {
+                //Debug.Log("Swipe Up!");
+               tongueScript.actTongue();
+               //playerScript.Jump();
+            }
+            if (swipe > 5) 
+            {
+               //Debug.Log("Swipe Down!");
+            }
+            if (drag > 5)
+            {
+               // Debug.Log("Swipe Right!");
+                spinScript.CallRotate(50);                       
+            }
+            if (drag < -5)
+            {
+               // Debug.Log("Swipe Left!");
+                spinScript.CallRotate(-50);
+            }
         }
     }
 }

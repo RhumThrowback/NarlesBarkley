@@ -113,6 +113,7 @@ public class SpawnPlatform : MonoBehaviour
                 {
                     case 0:
                         piece.transform.GetChild(i).gameObject.SetActive(false);
+                        piece.transform.GetChild(i).gameObject.GetComponent<Collider>().enabled = false;
                         numInActiveSegments++;
                         break;
                     case 1:
